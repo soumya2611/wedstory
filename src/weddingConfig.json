@@ -1,0 +1,72 @@
+{
+  "bride": {
+    "firstName": "Apsari",
+    "fullName": "Apsari ki full name",
+    "nickname": "Apsari",
+    "parentNames": "Apsari ke papa",
+    "grandparentNames": "",
+    "image": "/bride_image_1782369456488_images36.jpg",
+    "relation": "Younger Daughter",
+    "location": "Martya Mandal"
+  },
+  "groom": {
+    "firstName": "Soumya",
+    "fullName": "Soumya Ranjan ",
+    "nickname": "Lucky",
+    "parentNames": "Mr. Behera",
+    "grandparentNames": "Pubusahi,Khordha",
+    "image": "/groom_image_1782369460349_smiling-anime-girl-amidst-cherry-blossoms-in-warm-golden-sunlight-free-photo.jpg",
+    "relation": "Only Son"
+  },
+  "weddingDate": "2047-07-04T17:00",
+  "formattedDate": "Friday, July 4, 2030",
+  "formattedMonth": "JULY",
+  "formattedDay": "04",
+  "formattedYear": "2047",
+  "tithi": "Ashaadha Shukla Navami Tithi",
+  "invitationDesc": "With the divine grace of the Almighty and the blessings of our ancestors, we cordially invite you and your family to grace the auspicious occasion of the Vedic wedding ceremony of our beloved granddaughter.",
+  "inviter": "Mrs.Behera & Mr.Behera",
+  "credit": "Built with Love • Apsari & Soumya • 2026",
+  "footerCreditCopy": "🤝 Soumya X Ananya ",
+  "events": [
+    {
+      "id": "haldi",
+      "title": "Haldi Ceremony",
+      "time": "10:00 AM",
+      "date": "July 03, 2030",
+      "desc": "A vibrant morning ceremony filled with turmeric, music, and laughter.",
+      "venue": "Our Residence , Pubusahi",
+      "mapUrl": "https://maps.app.goo.gl/Ts1ZRR7aK641f12S6"
+    },
+    {
+      "id": "wedding",
+      "title": "Holy Wedding Vows",
+      "time": "05:00 PM",
+      "date": "July 04, 2030",
+      "desc": "The sacred Saat Phere around the holy fire to unite our souls for eternity.",
+      "venue": "Our Residence , Pubusahi",
+      "mapUrl": "https://maps.app.goo.gl/Ts1ZRR7aK641f12S6"
+    },
+    {
+      "id": "reception",
+      "title": "Grand Reception",
+      "time": "08:00 PM",
+      "date": "July 04, 2030",
+      "desc": "A celebratory banquet feast to share blessings, dinner, and join our reception.",
+      "venue": "Our Residence , Pubusahi",
+      "mapUrl": "https://maps.app.goo.gl/Ts1ZRR7aK641f12S6"
+    }
+  ],
+  "music": {
+    "themesong": "",
+    "lockscreen": "",
+    "lockscreenEnabled": false,
+    "themesongEnabled": true
+  },
+  "bgImage": "",
+  "envelopeBg": "",
+  "pageTitle": "Apsari & Soumya Wedding Invitation❤️",
+  "customBgCss": "<div className=\"min-h-screen w-full relative bg-black\">\n    {/* Violet Storm Background with Top Glow */}\n    <div\n      className=\"absolute inset-0 z-0\"\n      style={{\n        background: \"radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139, 92, 246, 0.25), transparent 70%), #000000\",\n      }}\n    />\n  \n    {/* Your Content/Components */}\n  </div>",
+  "customBgColor": "",
+  "coupleImageGrayscale": false
+}

@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cinzel", Georgia, serif;
+  --font-sans: "Montserrat", sans-serif;
+  --font-display: "Playfair Display", serif;
+  --font-script: "Great Vibes", cursive;
+
+  --color-gold-50: #fefdf6;
+  --color-gold-100: #faf7dd;
+  --color-gold-200: #f3ecbe;
+  --color-gold-300: #e7da92;
+  --color-gold-400: #dcc26c;
+  --color-gold-500: #c5a850;
+  --color-gold-600: #aa893c;
+  --color-gold-700: #8c6e2f;
+  --color-gold-800: #6e5425;
+  --color-gold-900: #55401e;
+  --color-gold-950: #30230f;
+  
+  --color-stone-950: #121110;
+  --color-stone-900: #1c1a18;
+  --color-stone-800: #2a2724;
+  --color-stone-700: #3c3833;
+}
+
+/* Custom styles and animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 25s linear infinite;
+}
+
+/* Gold border gradients */
+.gold-border {
+  border-image: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c) 1;
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #ffe082 0%, #d4af37 50%, #996515 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #d4af37;
+}
+
+/* Custom styling for standard selections */
+::selection {
+  background-color: #c5a850;
+  color: #121110;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #121110;
+  color: #f7f4ef;
+}
+
+/* Scratch Card Custom Reveal Animations */
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  70% {
+    transform: scale(1.05);
+    filter: blur(0px);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes goldShimmer {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  100% {
+    transform: translateX(150%) skewX(-25deg);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 223, 128, 0.4) 50%,
+    rgba(255, 255, 255, 0) 70%,
+    transparent 100%
+  );
+  transform: translateX(-150%) skewX(-25deg);
+}
+
+.animate-shimmer::after {
+  animation: goldShimmer 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Redesign keyframes and animations */
+@keyframes flicker {
+  0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.9; }
+  20% { transform: scale(1.05) rotate(1deg); opacity: 0.95; }
+  40% { transform: scale(0.95) rotate(-2deg); opacity: 0.85; }
+  60% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+  80% { transform: scale(1.02) rotate(-1deg); opacity: 0.95; }
+}
+
+@keyframes glow-diya {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.4)) drop-shadow(0 0 12px rgba(239, 68, 68, 0.2)); }
+  50% { filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.8)) drop-shadow(0 0 20px rgba(239, 68, 68, 0.4)); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(0.8deg) translateY(1px); }
+}
+
+.animate-flicker {
+  animation: flicker 1.2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-glow-diya {
+  animation: glow-diya 2.5s ease-in-out infinite;
+}
+
+.animate-sway {
+  animation: sway 5s ease-in-out infinite;
+  transform-origin: top center;
+}
