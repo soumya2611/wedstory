@@ -1,10 +1,16 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cloudinary = require('cloudinary').v2;
-const cors = require('cors');
-const dotenv = require('dotenv');
+import express from 'express';
+import mongoose from 'mongoose';
+import { v2 as cloudinary } from 'cloudinary';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -49,12 +55,18 @@ const configSchema = new mongoose.Schema({
 
 const Config = mongoose.model('Config', configSchema);
 
+// Helper to get default config from JSON file
+const getDefaultConfig = () => {
+  const configPath = path.resolve(__dirname, 'defaultConfig.json');
+  return JSON.parse(fs.readFileSync(configPath, 'utf-8'));
+};
+
 // Helper to seed default configuration if collection is empty
 async function seedDefaultConfig() {
   try {
     const count = await Config.countDocuments({ key: 'wedding_config' });
     if (count === 0) {
-      const defaultConfig = require('./defaultConfig.json');
+      const defaultConfig = getDefaultConfig();
       await Config.create({ ...defaultConfig, key: 'wedding_config' });
       console.log('Database successfully seeded with default defaultConfig.json!');
     }
@@ -68,7 +80,7 @@ app.get('/api/config', async (req, res) => {
   try {
     let config = await Config.findOne({ key: 'wedding_config' });
     if (!config) {
-      const defaultConfig = require('./defaultConfig.json');
+      const defaultConfig = getDefaultConfig();
       config = await Config.create({ ...defaultConfig, key: 'wedding_config' });
     }
     res.json(config);
