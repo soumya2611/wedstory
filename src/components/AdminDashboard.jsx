@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-escape */
 import { useState } from 'react';
+import { API_BASE_URL } from '../utils/api';
 
 const AdminDashboard = ({ initialConfig, onSaveConfig }) => {
   const [config, setConfig] = useState(JSON.parse(JSON.stringify(initialConfig)));
@@ -62,7 +63,7 @@ const AdminDashboard = ({ initialConfig, onSaveConfig }) => {
         reader.onerror = error => reject(error);
       });
 
-      const response = await fetch('/api/upload-file', {
+      const response = await fetch(`${API_BASE_URL}/api/upload-file`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ filename: uniqueName, base64Data })
@@ -112,7 +113,7 @@ const AdminDashboard = ({ initialConfig, onSaveConfig }) => {
   const handleSaveToDisk = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/save-config', {
+      const response = await fetch(`${API_BASE_URL}/api/save-config`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(config)
@@ -120,15 +121,15 @@ const AdminDashboard = ({ initialConfig, onSaveConfig }) => {
       const result = await response.json();
       if (result.success) {
         onSaveConfig(config); // Update parent state & LocalStorage
-        showToast('Configuration saved to disk & local storage!', 'success');
+        showToast('Configuration saved successfully!', 'success');
       } else {
-        throw new Error(result.error || 'Failed to save config to disk');
+        throw new Error(result.error || 'Failed to save config');
       }
     } catch (error) {
       console.error(error);
       // Fallback: Save to LocalStorage only
       onSaveConfig(config);
-      showToast(`Warning: Saved to browser storage only (Vite server API unavailable). Download JSON config to save permanently.`, 'warning');
+      showToast(`Warning: Saved to browser storage only (Server API unavailable). Download JSON config to save permanently.`, 'warning');
     } finally {
       setLoading(false);
     }

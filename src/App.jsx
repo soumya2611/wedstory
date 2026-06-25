@@ -14,6 +14,7 @@ import lockscreenMusic from './assets/music/lockscreen.mp3';
 import bgImage from './assets/wedding_bg.png';
 import defaultConfig from './weddingConfig.json';
 import AdminDashboard from './components/AdminDashboard';
+import { API_BASE_URL } from './utils/api';
 
 // Custom Scroll Reveal Component using Intersection Observer
 const ScrollReveal = ({ children }) => {
@@ -676,7 +677,34 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setConfig(getInitialConfig());
+    // Load local cache immediately for instant response
+    const local = getInitialConfig();
+    setConfig(local);
+
+    // Fetch fresh database config in the background
+    const fetchConfig = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/api/config`);
+        if (!res.ok) throw new Error('Database fetch failed');
+        const dbConfig = await res.json();
+        
+        // Remove MongoDB metadata fields
+        delete dbConfig._id;
+        delete dbConfig.__v;
+
+        if (dbConfig && typeof dbConfig === 'object' && !dbConfig.error) {
+          const preview = localStorage.getItem('wedding_invitation_config_preview');
+          if (!preview) {
+            setConfig(dbConfig);
+            localStorage.setItem('wedding_invitation_config', JSON.stringify(dbConfig));
+          }
+        }
+      } catch (err) {
+        console.warn("Using offline configuration cache. Live DB sync failed:", err.message);
+      }
+    };
+
+    fetchConfig();
   }, [hash]);
 
   useEffect(() => {
