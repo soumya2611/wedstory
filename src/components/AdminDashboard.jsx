@@ -20,7 +20,7 @@ const AdminDashboard = ({ initialConfig, onSaveConfig }) => {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    if (inputUser === 'lucky' && inputPass === 'luxky123') {
+    if (inputUser === 'soumya' && inputPass === 'Soumya@2002') {
       setIsAuthenticated(true);
       sessionStorage.setItem('admin_authenticated', 'true');
       setLoginError('');
